@@ -1,0 +1,47 @@
+﻿@page "/"
+@using WebUI.Database
+@using global::Database.Models
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<p>
+    @if (_customers is null)
+    {
+        <text>loading...</text>
+    }
+    else
+    {
+        foreach (var customer in _customers)
+        {
+            <div>@customer.CustomerId</div>
+            <div>@customer.Name</div>
+        }
+    }
+</p>
+
+@inject ApplicationDbContext _context
+
+@code
+{
+    public List<Customer> _customers;
+
+    protected override void OnInitialized()
+    {
+        _context.Customers.Add(new Customer
+        {
+            CustomerId = Guid.NewGuid(),
+            Deleted = false,
+            Email = "test@test.com",
+            Name = "bill test",
+            Telephone = "07846251489"
+        });
+
+        var changes = _context.SaveChanges();
+
+        _customers = _context.Customers.ToList();
+    }
+}
