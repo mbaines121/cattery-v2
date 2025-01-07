@@ -1,0 +1,33 @@
+﻿@page "/"
+@layout LandingLayout
+
+<PageTitle>Welcome</PageTitle>
+
+<h1>Hello!</h1>
+
+Welcome to the cattery app.
+
+@inject NavigationManager _navigationManager;
+
+@code
+{
+    [CascadingParameter]
+    private Task<AuthenticationState>? authenticationState { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (authenticationState is not null)
+        {
+            var state = await authenticationState;
+
+            var isAuthenticated = state?.User.Identity?.IsAuthenticated;
+
+            if (isAuthenticated.HasValue && isAuthenticated.Value)
+            {
+                _navigationManager.NavigateTo("/dashboard");
+            }
+        }
+
+        await base.OnAfterRenderAsync(firstRender);
+    }
+}
