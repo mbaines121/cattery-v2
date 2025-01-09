@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="Styles\tailwind.css" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\cattery-v2.ServiceDefaults\cattery-v2.ServiceDefaults.csproj" />
   </ItemGroup>
 
@@ -15,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\lib\" />
   </ItemGroup>
 

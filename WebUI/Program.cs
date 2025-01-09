@@ -31,10 +31,9 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-
 app.UseAntiforgery();
 
-app.MapGet("/Account/Login", async (HttpContext httpContext, string returnUrl = "/") =>
+app.MapGet("/Account/login", async (HttpContext httpContext, string returnUrl = "/") =>
 {
     var authenticationProperties = new LoginAuthenticationPropertiesBuilder()
             .WithRedirectUri(returnUrl)
@@ -43,7 +42,17 @@ app.MapGet("/Account/Login", async (HttpContext httpContext, string returnUrl = 
     await httpContext.ChallengeAsync(Auth0Constants.AuthenticationScheme, authenticationProperties);
 });
 
-app.MapGet("/Account/Logout", async (HttpContext httpContext) =>
+app.MapGet("/Account/SignUp", async (HttpContext httpContext, string returnUrl = "/") =>
+{
+    var authenticationProperties = new LoginAuthenticationPropertiesBuilder()
+            .WithRedirectUri(returnUrl)
+            .WithParameter("screen_hint", "signup")
+            .Build();
+
+    await httpContext.ChallengeAsync(Auth0Constants.AuthenticationScheme, authenticationProperties);
+});
+
+app.MapGet("/Account/SignOut", async (HttpContext httpContext) =>
 {
     var authenticationProperties = new LogoutAuthenticationPropertiesBuilder()
             .WithRedirectUri("/")
