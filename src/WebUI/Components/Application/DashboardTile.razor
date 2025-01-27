@@ -1,0 +1,24 @@
+﻿<MudCard>
+    <MudCardHeader>
+        <CardHeaderContent>
+            <MudText Typo="Typo.h6">@Title</MudText>
+        </CardHeaderContent>
+        <CardHeaderActions>
+            
+        </CardHeaderActions>
+    </MudCardHeader>
+    <MudCardContent>
+        <MudText Typo="Typo.h3">@Count</MudText>
+        <MudText Typo="Typo.body2">@Text</MudText>
+    </MudCardContent>
+    <MudCardActions>
+        <MudButton Variant="Variant.Text" Color="Color.Primary">Details</MudButton>
+    </MudCardActions>
+</MudCard>
+
+@code {
+    [Parameter] public string Title { get; set; } = "";
+    [Parameter] public string Count { get; set; } = "0";
+    [Parameter] public string Text { get; set; } = "";
+    [Parameter] public string Url { get; set; } = "";
+}

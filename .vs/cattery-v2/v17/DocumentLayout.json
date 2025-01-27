@@ -1,0 +1,59 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\User\\source\\repos\\cattery-v2\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{ADDD99F4-A8BE-4074-85A5-B710B398C4A4}|src\\AngularUI\\AngularUI.Server\\AngularUI.Server.csproj|c:\\users\\user\\source\\repos\\cattery-v2\\src\\angularui\\angularui.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ADDD99F4-A8BE-4074-85A5-B710B398C4A4}|src\\AngularUI\\AngularUI.Server\\AngularUI.Server.csproj|solutionrelative:src\\angularui\\angularui.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\cattery-v2\\src\\AngularUI\\AngularUI.Server\\Program.cs",
+              "RelativeDocumentMoniker": "src\\AngularUI\\AngularUI.Server\\Program.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\cattery-v2\\src\\AngularUI\\AngularUI.Server\\Program.cs",
+              "RelativeToolTip": "src\\AngularUI\\AngularUI.Server\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-27T14:15:54.96Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 2122,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{007a3a6b-b5b2-454d-a2bd-cf929f989be2}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

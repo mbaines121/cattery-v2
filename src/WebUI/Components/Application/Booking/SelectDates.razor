@@ -1,0 +1,9 @@
+﻿<MudStack AlignItems="AlignItems.Center" Style="height:450px">
+    <MudDateRangePicker PickerVariant="@PickerVariant.Static" @bind-DateRange="@_dateRange" Margin="Margin.Dense" />
+</MudStack>
+
+<SelectCustomer></SelectCustomer>
+
+@code {
+    private DateRange _dateRange { get; set; }
+}

@@ -1,0 +1,37 @@
+﻿@page "/"
+@layout LandingLayout
+
+<PageTitle>Cattery</PageTitle>
+
+@inject NavigationManager _navigationManager;
+@inject ILogger<Index> _logger;
+
+@code
+{
+	[CascadingParameter]
+	private Task<AuthenticationState>? authenticationState { get; set; }
+
+	private bool _isInitialised;
+
+	/*protected override async Task OnInitializedAsync()
+	{
+		_logger.LogInformation("OnInitializedAsync() called");
+
+		if (!_isInitialised)
+		{
+			if (authenticationState is not null)
+			{
+				var state = await authenticationState;
+
+				var isAuthenticated = state?.User.Identity?.IsAuthenticated;
+
+				if (isAuthenticated.HasValue && isAuthenticated.Value)
+				{
+					_navigationManager.NavigateTo("/dashboard");
+				}
+			}
+
+			_isInitialised = true;
+		}
+	}*/
+}

@@ -1,0 +1,234 @@
+﻿@inherits LayoutComponentBase
+
+<div class="bg-white text-gray-800">
+	<header class="p-4 bg-gray-100 text-gray-800 sticky top-0 z-50">
+		<div class="container flex justify-between h-16 mx-auto">
+			<a rel="noopener noreferrer" href="#" aria-label="Back to homepage" class="flex items-center p-2">
+				<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 32 32" class="w-8 h-8 text-teal-600">
+					<path d="M27.912 7.289l-10.324-5.961c-0.455-0.268-1.002-0.425-1.588-0.425s-1.133 0.158-1.604 0.433l0.015-0.008-10.324 5.961c-0.955 0.561-1.586 1.582-1.588 2.75v11.922c0.002 1.168 0.635 2.189 1.574 2.742l0.016 0.008 10.322 5.961c0.455 0.267 1.004 0.425 1.59 0.425 0.584 0 1.131-0.158 1.602-0.433l-0.014 0.008 10.322-5.961c0.955-0.561 1.586-1.582 1.588-2.75v-11.922c-0.002-1.168-0.633-2.189-1.573-2.742zM27.383 21.961c0 0.389-0.211 0.73-0.526 0.914l-0.004 0.002-10.324 5.961c-0.152 0.088-0.334 0.142-0.53 0.142s-0.377-0.053-0.535-0.145l0.005 0.002-10.324-5.961c-0.319-0.186-0.529-0.527-0.529-0.916v-11.922c0-0.389 0.211-0.73 0.526-0.914l0.004-0.002 10.324-5.961c0.152-0.090 0.334-0.143 0.53-0.143s0.377 0.053 0.535 0.144l-0.006-0.002 10.324 5.961c0.319 0.185 0.529 0.527 0.529 0.916z"></path>
+					<path d="M22.094 19.451h-0.758c-0.188 0-0.363 0.049-0.515 0.135l0.006-0.004-4.574 2.512-5.282-3.049v-6.082l5.282-3.051 4.576 2.504c0.146 0.082 0.323 0.131 0.508 0.131h0.758c0.293 0 0.529-0.239 0.529-0.531v-0.716c0-0.2-0.11-0.373-0.271-0.463l-0.004-0.002-5.078-2.777c-0.293-0.164-0.645-0.26-1.015-0.26-0.39 0-0.756 0.106-1.070 0.289l0.010-0.006-5.281 3.049c-0.636 0.375-1.056 1.055-1.059 1.834v6.082c0 0.779 0.422 1.461 1.049 1.828l0.009 0.006 5.281 3.049c0.305 0.178 0.67 0.284 1.061 0.284 0.373 0 0.723-0.098 1.027-0.265l-0.012 0.006 5.080-2.787c0.166-0.091 0.276-0.265 0.276-0.465v-0.716c0-0.293-0.238-0.529-0.529-0.529z"></path>
+				</svg>
+			</a>
+			<nav>
+				<!--<ul class="items-stretch hidden space-x-3 lg:flex">
+				<li class="flex">
+				<a rel="noopener noreferrer" href="#" class="flex items-center px-4 -mb-1 border-b-2 border-transparent text-teal-600 border-teal-600">About</a>
+				</li>
+				<li class="flex">
+				<a rel="noopener noreferrer" href="#" class="flex items-center px-4 -mb-1 border-b-2 border-transparent">Pricing</a>
+				</li>
+				<li class="flex">
+				<a rel="noopener noreferrer" href="#" class="flex items-center px-4 -mb-1 border-b-2 border-transparent">Contact</a>
+				</li>
+				</ul>-->
+			</nav>
+			<div class="items-center flex-shrink-0 hidden lg:flex">
+				<a href="/account/login" class="self-center px-8 py-3 rounded">Log in</a>
+				<a href="/account/signup" class="self-center px-8 py-3 font-semibold rounded bg-teal-600 text-gray-50 shadow-xl hover:shadow-none">Get started for free</a>
+			</div>
+			<button class="p-4 lg:hidden">
+				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6 text-gray-800">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+				</svg>
+			</button>
+		</div>
+	</header>
+
+	<main class="relative">
+		<section class="bg-gray-100 text-gray-800">
+			<div class="container flex flex-col p-6 mx-auto sm:py-12 lg:py-80 lg:flex-row lg:justify-between">
+				<div class="flex flex-col justify-center p-6 text-center rounded-sm lg:max-w-lg lg:text-left">
+					<h1 class="text-5xl font-bold sm:text-7xl">
+						Bookings<br class="">
+						made simple
+					</h1>
+					<p class="mt-6 mb-8 text-lg sm:mb-12">
+						Make bookings for your busy cattery or kennel business in a simple and straightforward way.
+						<br class="hidden md:inline lg:hidden">
+					</p>
+					<div class="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
+						<a href="/account/signup" class="px-16 py-4 text-xl font-semibold rounded bg-teal-600 text-gray-50 shadow-xl hover:shadow-none">Try for free</a>
+					</div>
+				</div>
+				<div class="flex items-center justify-center p-6 mt-8 lg:mt-0 h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128">
+					<img src="images/screenshot.png" alt="" class="object-contain h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128">
+				</div>
+			</div>
+		</section>
+
+		<section class="p-4 lg:p-8 bg-white text-gray-800">
+			<div class="mb-12 space-y-4 text-center">
+				<h1 class="text-4xl font-semibold leading-tight">Take the hassle out of your day and increase bookings</h1>
+			</div>
+			<div class="container mx-auto space-y-12">
+				<div class="py-10 flex flex-col overflow-hidden rounded-md lg:flex-row">
+					<img src="/images/screenshot.svg" alt="" class="h-80 bg-gray-500 aspect-video">
+					<div class="flex flex-col justify-center p-6 bg-white">
+						<h3 class="text-3xl font-bold">Simple and straightforward - Designed for your business</h3>
+						<p class="my-6 text-gray-600">We know you don't need hundreds of features so we focus on what matters most - taking bookings</p>
+					</div>
+				</div>
+				<div class="py-10 flex flex-col overflow-hidden rounded-md lg:flex-row-reverse">
+					<img src="/images/screenshot.svg" alt="" class="h-80 bg-gray-500 aspect-video">
+					<div class="flex flex-col justify-center p-6 bg-white">
+						<h3 class="text-3xl font-bold">Easily check availability and provide quotes</h3>
+						<p class="my-6 text-gray-600">Increase bookings by being able to give potential customers a quote easily and quickly.</p>
+					</div>
+				</div>
+				<div class="py-10 flex flex-col overflow-hidden rounded-md lg:flex-row">
+					<img src="/images/screenshot.svg" alt="" class="h-80 bg-gray-500 aspect-video">
+					<div class="flex flex-col justify-center p-6 bg-white">
+						<h3 class="text-3xl font-bold">Detailed analysis</h3>
+						<p class="my-6 text-gray-600">See an analysis of historical bookings to help you make better decisions for your business.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="py-6 bg-gray-100 text-gray-800">
+			<div class="container p-4 mx-auto sm:p-10">
+				<div class="mb-12 space-y-4 text-center">
+					<h1 class="text-4xl font-semibold leading-tight">Pricing</h1>
+					<p class="px-4 sm:px-8 lg:px-24">We keep our pricing low by only providing the core features you need</p>
+				</div>
+				<div class="grid max-w-md grid-cols-1 gap-6 mx-auto auto-rows-fr lg:grid-cols-2 lg:max-w-full">
+					<div class="flex flex-col overflow-hidden border-2 rounded-md border-gray-300">
+						<div class="flex flex-col items-center justify-center px-2 py-8 space-y-4 bg-white">
+							<p class="text-lg font-medium">30-day Trial</p>
+							<p class="text-5xl font-bold">
+								£0
+							</p>
+						</div>
+						<div class="flex flex-col items-center justify-center px-2 py-8 bg-white">
+							<ul class="self-stretch flex-1 space-y-2">
+								<li class="flex justify-center space-x-2">
+									<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6 text-teal-600">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+									</svg>
+									<span>All premium features</span>
+								</li>
+								<li class="flex justify-center space-x-2">
+									<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6 text-teal-600">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+									</svg>
+									<span>No restrictions</span>
+								</li>
+								<li class="flex justify-center space-x-2">
+									<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6 text-teal-600">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+									</svg>
+									<span>No obligation</span>
+								</li>
+							</ul>
+							<button class="px-8 py-3 mt-6 text-lg font-semibold rounded sm:mt-12 bg-teal-600 text-gray-50 shadow-xl hover:shadow-none">Try for free</button>
+						</div>
+					</div>
+					<div class="flex flex-col overflow-hidden border-2 rounded-md border-teal-600 bg-white">
+						<div class="flex flex-col items-center justify-center px-2 py-8 space-y-4 bg-white">
+							<p class="text-lg font-medium">Monthly</p>
+							<p class="text-5xl font-bold">
+								£10
+							</p>
+						</div>
+						<div class="flex flex-col items-center justify-center px-2 py-8 bg-white">
+							<ul class="self-stretch flex-1 space-y-2">
+								<li class="flex justify-center space-x-2">
+									<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6 text-teal-600">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+									</svg>
+									<span>Rolling monthly subscription</span>
+								</li>
+								<li class="flex justify-center space-x-2">
+									<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6 text-teal-600">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+									</svg>
+									<span>No upfront or hidden costs</span>
+								</li>
+								<li class="flex justify-center space-x-2">
+									<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6 text-teal-600">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+									</svg>
+									<span>Cancel anytime</span>
+								</li>
+							</ul>
+							<button class="px-8 py-3 mt-6 text-lg font-semibold rounded sm:mt-12 bg-teal-600 text-gray-50 shadow-xl hover:shadow-none">Try for free</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section>
+			<div class="grid max-w-screen-xl grid-cols-1 gap-8 px-8 py-16 mx-auto rounded-lg md:grid-cols-2 md:px-12 lg:px-16 xl:px-32">
+				<div class="flex flex-col justify-between">
+					<div class="space-y-2">
+						<h2 class="text-4xl font-bold leading-tight lg:text-5xl">Let's talk!</h2>
+						<div class="text-gray-600">We will answer any questions you have</div>
+					</div>
+					<img src="images/image.svg" alt="Contact our customer support" class="p-6 h-52 md:h-64">
+				</div>
+				<form novalidate="" class="space-y-6" data-np-autofill-form-type="identity" data-np-checked="1" data-np-watching="1">
+					<div>
+						<label for="name" class="text-sm">Full name</label>
+						<input id="name" type="text" placeholder="" class="w-full p-3 rounded bg-gray-100" data-np-autofill-field-type="fullName">
+					</div>
+					<div>
+						<label for="email" class="text-sm">Email</label>
+						<input id="email" type="email" class="w-full p-3 rounded bg-gray-100" data-np-autofill-field-type="email">
+					</div>
+					<div>
+						<label for="message" class="text-sm">Message</label>
+						<textarea id="message" rows="3" class="w-full p-3 rounded bg-gray-100"></textarea>
+					</div>
+					<button type="submit" class="self-auto content-center justify-center p-3 text-sm font-bold tracking-wide uppercase rounded bg-teal-600 text-gray-50">Send Message</button>
+				</form>
+			</div>
+		</section>
+	</main>
+
+	<footer>
+		<div class="container flex flex-col p-4 mx-auto md:p-8 lg:flex-row">
+			<ul class="self-center py-6 space-y-4 text-center sm:flex sm:space-y-0 sm:justify-around sm:space-x-4 lg:flex-1 lg:justify-start">
+				<li>Privacy policy</li>
+				<li>Terms of use</li>
+				<li>About</li>
+			</ul>
+			<div class="flex flex-col justify-center pt-6 lg:pt-0">
+				<div class="flex justify-center space-x-4">
+					<a rel="noopener noreferrer" href="#" class="flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-teal-600 text-gray-50">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 32 32" class="w-4 h-4">
+							<path d="M32 16c0-8.839-7.167-16-16-16-8.839 0-16 7.161-16 16 0 7.984 5.849 14.604 13.5 15.803v-11.177h-4.063v-4.625h4.063v-3.527c0-4.009 2.385-6.223 6.041-6.223 1.751 0 3.584 0.312 3.584 0.312v3.937h-2.021c-1.984 0-2.604 1.235-2.604 2.5v3h4.437l-0.713 4.625h-3.724v11.177c7.645-1.199 13.5-7.819 13.5-15.803z"></path>
+						</svg>
+					</a>
+				</div>
+			</div>
+		</div>
+	</footer>
+</div>
+
+@inject NavigationManager _navigationManager;
+@inject ILogger<Index> _logger;
+
+@code
+{
+	[CascadingParameter]
+	private Task<AuthenticationState>? authenticationState { get; set; }
+
+	protected override async Task OnAfterRenderAsync(bool first)
+	{
+		if (authenticationState is not null)
+		{
+			var state = await authenticationState;
+
+			var isAuthenticated = state?.User.Identity?.IsAuthenticated;
+
+			if (isAuthenticated.HasValue && isAuthenticated.Value)
+			{
+				_logger.LogInformation("Redirecting to dashboard.");
+				_navigationManager.NavigateTo("/dashboard");
+			}
+		}
+
+		await base.OnAfterRenderAsync(first);
+	}
+}

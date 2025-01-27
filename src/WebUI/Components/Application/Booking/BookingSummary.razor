@@ -1,0 +1,31 @@
+﻿<MudText>New Customer</MudText>
+<MudTextField @bind-Value="Name" Label="Name" Variant="Variant.Outlined"></MudTextField>
+<MudTextField @bind-Value="Number" Label="Number" Variant="Variant.Outlined"></MudTextField>
+<MudTextField @bind-Value="Email" Label="Email" Variant="Variant.Outlined"></MudTextField>
+
+<MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@(() => CreateBookingAsync())">Provisional</MudButton>
+<MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@(() => CreateBookingAsync())">Book</MudButton>
+
+@using Mapster
+@using MediatR
+@using global::Application.Bookings.Commands.CreateBooking
+
+@inject ISender _sender
+
+@code {
+    public string Name { get; set; }
+    public string Number { get; set; }
+    public string Email { get; set; }
+
+    public record CreateBookingRequest();
+    public record CreateBookingResponse(Guid Id);
+
+    public async Task CreateBookingAsync()
+    {
+        var request = new CreateBookingRequest();
+
+        var command = request.Adapt<CreateBookingCommand>();
+        var result = await _sender.Send(command);
+        var response = result.Adapt<CreateBookingResponse>();
+    }
+}

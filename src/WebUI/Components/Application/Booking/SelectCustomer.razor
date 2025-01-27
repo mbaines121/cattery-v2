@@ -1,0 +1,59 @@
+﻿<MudTextField @bind-Value="Search" Label="Search by customer or animal" Variant="Variant.Outlined" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Search" />
+
+<MudPaper>
+    <MudList T="string" SelectionMode="SelectionMode.ToggleSelection">
+        <MudListItem>
+            <AvatarContent>
+                <MudAvatar Color="Color.Tertiary">+</MudAvatar>
+            </AvatarContent>
+            <ChildContent>
+                <MudHighlighter Text="New customer" />
+            </ChildContent>
+        </MudListItem>
+        <MudListItem>
+
+            <AvatarContent>
+                <MudAvatar Color="Color.Tertiary">MB</MudAvatar>
+            </AvatarContent>
+            <ChildContent>
+                <MudHighlighter Text="Mark Baines" HighlightedText="Baines" />
+                <MudText>36 Sparrow Way</MudText>
+                <MudText>Aslan & Juno</MudText>
+            </ChildContent>
+        </MudListItem>
+        <MudListItem>
+            <AvatarContent>
+                <MudAvatar Color="Color.Tertiary">JS</MudAvatar>
+            </AvatarContent>
+            <ChildContent>
+                <MudText>Jonathan Smith</MudText>
+                <MudText>Gloucester</MudText>
+                <MudText>Simba</MudText>
+            </ChildContent>
+        </MudListItem>
+        <MudListItem>
+            <AvatarContent>
+                <MudAvatar Color="Color.Tertiary">LM</MudAvatar>
+            </AvatarContent>
+            <ChildContent>
+                <MudText>Lee Manning</MudText>
+                <MudText>Norwich</MudText>
+                <MudText>Loki</MudText>
+            </ChildContent>
+        </MudListItem>
+    </MudList>
+</MudPaper>
+
+@code {
+    public string Search { get; set; } = "Baines";
+
+    string[] headings = { "Name", "Email", "Animals" };
+    string[] rows = {
+        @"Krishna kpartner0@usatoday.com Male",
+        @"Webb wstitle1@ning.com Male",
+        @"Nathanil nneal2@cyberchimps.com Male",
+        @"Adara alockwood3@patch.com Female",
+        @"Cecilius cchaplin4@shinystat.com Male",
+        @"Cicely cemerine9@soup.io Female",
+    };
+}

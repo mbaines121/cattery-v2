@@ -1,0 +1,22 @@
+﻿@page "/booking"
+@attribute [Authorize]
+
+@using WebUI.Components.Application.Booking
+
+<PageTitle>Booking</PageTitle>
+
+<MudStepper ShowResetButton>
+    <MudStep Title="Dates">
+        <SelectDates></SelectDates>
+    </MudStep>
+    <MudStep Title="Animals" SecondaryText="Optional">
+        <SelectAnimals></SelectAnimals>
+    </MudStep>
+    <MudStep Title="Summary">
+        <BookingSummary></BookingSummary>
+    </MudStep>
+</MudStepper>
+
+@code {
+
+}

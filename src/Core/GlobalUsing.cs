@@ -1,0 +1,9 @@
+﻿global using Domain.Abstractions;
+global using Domain.Aggregates.BookingAggregate.Entities;
+global using Domain.Aggregates.BookingAggregate.DomainEvents;
+global using Domain.Aggregates.CustomerAggregate.Entities;
+global using Domain.Aggregates.CustomerAggregate.DomainEvents;
+global using Domain.Aggregates.PenAggregate.Entities;
+global using Domain.Aggregates.PenAggregate.DomainEvents;
+global using Domain.Exceptions;
+global using Domain.Aggregates.ValueObjects;

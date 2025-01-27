@@ -1,0 +1,106 @@
+﻿@page "/dashboard"
+@attribute [Authorize]
+
+<PageTitle>Dashboard</PageTitle>
+
+<MudText Typo="Typo.h3">Good morning, @Name</MudText>
+
+<MudGrid>
+    <MudItem xs="12" sm="6">
+        <MudGrid>
+            <MudItem xs="12">
+                <MudCard>
+                    <MudCardHeader>
+                        <CardHeaderContent>
+                            <MudText Typo="Typo.h6">Diary</MudText>
+                        </CardHeaderContent>
+                        <CardHeaderActions>
+                            <MudButton Href="/booking" Variant="Variant.Filled" Color="Color.Primary">Check availability</MudButton>
+                        </CardHeaderActions>
+                    </MudCardHeader>
+                    <MudCardContent>
+                        <MudText Typo="Typo.h3">8/10</MudText>
+                        <MudText Typo="Typo.body2">Pens currently full</MudText>
+                    </MudCardContent>
+                    <MudCardActions>
+
+                    </MudCardActions>
+                </MudCard>
+            </MudItem>
+            <MudItem xs="12">
+                <MudCard>
+                    <MudCardHeader>
+                        <CardHeaderContent>
+                            <MudText Typo="Typo.h6">Bookings</MudText>
+                        </CardHeaderContent>
+                        <CardHeaderActions>
+
+                        </CardHeaderActions>
+                    </MudCardHeader>
+                    <MudCardContent>
+                        <MudText Typo="Typo.h3">27</MudText>
+                        <MudText Typo="Typo.body2">Total bookings</MudText>
+                    </MudCardContent>
+                    <MudCardActions>
+
+                    </MudCardActions>
+                </MudCard>
+            </MudItem>
+        </MudGrid>
+    </MudItem>
+    <MudItem xs="12" sm="6">
+        <MudCard Style="height: 100%">
+            <MudCardHeader>
+                <CardHeaderContent>
+                    <MudText Typo="Typo.h6">Trial</MudText>
+                </CardHeaderContent>
+                <CardHeaderActions>
+                    <MudButton Variant="Variant.Outlined" Color="Color.Primary">Subscribe</MudButton>
+                </CardHeaderActions>
+            </MudCardHeader>
+            <MudCardContent>
+                <MudText Typo="Typo.h3">14</MudText>
+                <MudText Typo="Typo.body2">Days left of free trial</MudText>
+            </MudCardContent>
+            <MudCardActions>
+
+            </MudCardActions>
+        </MudCard>
+    </MudItem>
+    <MudItem xs="12" sm="6" md="4">
+        <DashboardTile Title="Arriving Today" Count="2" />
+    </MudItem>
+    <MudItem xs="12" sm="6" md="4">
+        <DashboardTile Title="Leaving Today" Count="4" />
+    </MudItem>
+    <MudItem xs="12" sm="12" md="4">
+        <DashboardTile Title="Currently Boarded" Count="17" Text="Cats" />
+    </MudItem>
+    <MudItem xs="12" sm="6" md="4">
+        <DashboardTile Title="Changing pens Today" Count="1" />
+    </MudItem>
+    <MudItem xs="12" sm="6" md="4">
+        <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
+    </MudItem>
+    <MudItem xs="12" sm="12" md="4">
+        <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
+    </MudItem>
+</MudGrid>
+
+@code
+{
+    [CascadingParameter]
+    private Task<AuthenticationState>? authenticationState { get; set; }
+
+    private string Name { get; set; } = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (authenticationState is not null)
+        {
+            var state = await authenticationState;
+
+            Name = state?.User?.Identity?.Name ?? string.Empty;
+        }
+    }
+}
