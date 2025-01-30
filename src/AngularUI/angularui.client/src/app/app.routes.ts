@@ -1,35 +1,25 @@
 import { Routes } from "@angular/router";
 import { LandingLayoutComponent } from "./_layout/landing-layout/landing-layout.component";
-import { AboutComponent } from "./landing/about/about.component";
-import { ContactComponent } from "./landing/contact/contact.component";
 import { AppLayoutComponent } from "./_layout/app-layout/app-layout.component";
-import { DashboardComponent } from "./backoffice/dashboard/dashboard.component";
-import { BookingComponent } from "./backoffice/booking/booking.component";
-import { HomeComponent } from "./landing/home/home.component";
+import { AuthGuard } from "@auth0/auth0-angular";
+import { NotFoundComponent } from "./not-found/not-found.component";
+import { backOfficeRoutes } from "./backoffice/backoffice.routes"
+import { landingRoutes } from "./landing/landing.routes"
 
 export const routes: Routes = [
-
-    // layout routes
     {
         path: '',
         component: LandingLayoutComponent,
-        children: [
-            { path: '', component: HomeComponent },
-            { path: 'about', component: AboutComponent },
-            { path: 'contact', component: ContactComponent }
-        ]
+        children: landingRoutes
     },
-
-    // app routes
     {
-        path: '',
+        path: 'app',
         component: AppLayoutComponent,
-        children: [
-            { path: 'dashboard', component: DashboardComponent },
-            { path: 'booking', component: BookingComponent }
-        ]
+        canActivate: [AuthGuard],
+        children: backOfficeRoutes
     },
-
-    // no layout routes ...
-    { path: '**', redirectTo: '' }
+    {
+        path: '**', 
+        component: NotFoundComponent
+    }
 ];

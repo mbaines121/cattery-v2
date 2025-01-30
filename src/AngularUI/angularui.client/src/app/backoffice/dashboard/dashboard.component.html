@@ -1,1 +1,21 @@
-<p>dashboard works!</p>
+<span *ngIf="auth.user$ | async as user">
+    <h2>Good morning, {{ user.name }}</h2>
+</span>
+
+@if (isFetching() && !error()) {
+  <p>
+    Fetching dashboard tiles...
+  </p>
+}
+
+@if (error()) {
+  <p>
+    {{ error() }}
+  </p>
+}
+
+@if (weatherForecasts()) {
+  dashboard item...
+} @else if (weatherForecasts()?.length === 0) {
+  <p>Unfortunately, no dashboard items could be found.</p>
+}
