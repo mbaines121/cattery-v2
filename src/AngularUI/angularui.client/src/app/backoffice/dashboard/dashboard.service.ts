@@ -1,7 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable, signal } from "@angular/core";
+import { AuthService } from "@auth0/auth0-angular";
 import { Observable, throwError } from "rxjs";
-import { catchError, map, tap } from "rxjs/operators";
+import { catchError, concatMap, flatMap, map, tap } from "rxjs/operators";
 
 export interface WeatherForecast {
   date: string;
@@ -15,22 +16,30 @@ export interface WeatherForecast {
 })
 export class DashboardService {
   private httpClient = inject(HttpClient);
+  private auth = inject(AuthService);
+  metadata = {};
 
   private weatherforecasts = signal<WeatherForecast[]>([]);
 
   public loadedWeatherforecasts = this.weatherforecasts.asReadonly();
 
   getDashboardTiles(): Observable<WeatherForecast[]> {
-    return this.httpClient
-      .get<WeatherForecast[]>('/weatherforecast')
+    return this.auth.user$
       .pipe(
-        tap({
-          next: weatherforecasts => this.weatherforecasts.set(weatherforecasts)
-        }),
-        catchError((error) => { 
-          console.log(error);
-          return throwError(() => new Error('Unable to get dashboard tiles.'))
-        })
+        concatMap((user) =>
+          this.httpClient
+            .get<WeatherForecast[]>('/api/weatherforecast')
+            .pipe(
+              tap({
+                next: weatherforecasts => {
+                  this.weatherforecasts.set(weatherforecasts);
+                }
+              }),
+              catchError(() => throwError(() => new Error('Unable to get dashboard tiles.')))
+            )
+        ),
+        map((user: any) => user.user_metadata),
+        tap((meta) => (this.metadata = meta))
       );
   }
 }

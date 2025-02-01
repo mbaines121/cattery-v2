@@ -1,14 +1,10 @@
 using AngularUI.Server;
+using AngularUI.Server.Auth;
 using Application;
-using Auth0.AspNetCore.Authentication;
 using Infrastructure;
+using Microsoft.AspNetCore.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddAuth0WebAppAuthentication(options => {
-    options.Domain = builder.Configuration["Auth0:Domain"] ?? "";
-    options.ClientId = builder.Configuration["Auth0:ClientId"] ?? "";
-});
 
 builder.AddSqlServerDbContext<ApplicationDbContext>(connectionName: "CatteryV2");
 
@@ -19,11 +15,17 @@ builder.Services
     .AddApplicationServices(builder.Configuration)
     .AddInfrastructureServices(builder.Configuration);
 
-// Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
+builder.Services
+    .AddAuthentication(builder.Configuration)
+    .AddAuthorisation();
+
 var app = builder.Build();
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.UseDefaultFiles();
 app.MapStaticAssets();
@@ -48,7 +50,7 @@ var summaries = new[]
 };
 
 // TODO: Move with Carter
-app.MapGet("/weatherforecast", () =>
+app.MapGet("/api/weatherforecast", () =>
 {
     var forecast =  Enumerable.Range(1, 5).Select(index =>
         new WeatherForecast
@@ -60,7 +62,13 @@ app.MapGet("/weatherforecast", () =>
         .ToArray();
     return forecast;
 })
-.WithName("GetWeatherForecast");
+.WithName("GetWeatherForecast")
+.RequireAuthorization();
+
+// This webhook is called by Auth0 after a new user has been registered.
+app.MapPost("/users", () => {
+    // Store the user Id and a new user record in the db. (not customer)
+});
 
 app.MapFallbackToFile("/index.html");
 
