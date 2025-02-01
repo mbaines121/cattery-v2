@@ -11,6 +11,7 @@ import { map, shareReplay } from 'rxjs/operators';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
 import { LogoutButtonComponent } from "../../shared/logout-button/logout-button.component";
+import { AccountButtonComponent } from "../../shared/account-button/account-button.component";
 
 @Component({
   selector: 'app-layout',
@@ -27,7 +28,8 @@ import { LogoutButtonComponent } from "../../shared/logout-button/logout-button.
     RouterOutlet,
     CommonModule,
     LogoutButtonComponent,
-    RouterLink
+    RouterLink,
+    AccountButtonComponent
 ]
 })
 export class AppLayoutComponent {

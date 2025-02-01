@@ -14,8 +14,32 @@
   </p>
 }
 
-@if (weatherForecasts()) {
-  dashboard item...
-} @else if (weatherForecasts()?.length === 0) {
-  <p>Unfortunately, no dashboard items could be found.</p>
-}
+<mat-grid-list cols="2" rowHeight="350px">
+
+  @if (weatherforecasts()) {
+    @for (forecast of weatherforecasts(); track forecast.temperatureC) {
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-card class="dashboard-card">
+          <mat-card-header>
+            <mat-card-title>
+              {{ forecast.temperatureC }}
+              <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu" xPosition="before">
+                <button mat-menu-item>Expand</button>
+                <button mat-menu-item>Remove</button>
+              </mat-menu>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="dashboard-card-content">
+            <div>{{ forecast.summary }}</div>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+    }
+  } @else if (weatherforecasts().length === 0) {
+    <p>Unfortunately, no dashboard items could be found.</p>
+  }
+
+</mat-grid-list>

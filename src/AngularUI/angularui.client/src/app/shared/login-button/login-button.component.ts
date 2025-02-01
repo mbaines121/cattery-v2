@@ -11,6 +11,8 @@ export class LoginButtonComponent {
  auth = inject(AuthService);
 
  login(): void {
-  this.auth.loginWithRedirect();
+  this.auth.loginWithRedirect({
+    appState: { target: '/app/dashboard' }
+  });
  }
 }

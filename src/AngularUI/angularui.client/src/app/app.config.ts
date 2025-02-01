@@ -1,10 +1,10 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { provideAuth0 } from '@auth0/auth0-angular';
-
 import { routes } from './app.routes';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { loggingInterceptor } from './interceptors/request.interceptor'
+import { loggingInterceptor } from './interceptors/request.interceptor';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async'
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -19,6 +19,6 @@ export const appConfig: ApplicationConfig = {
       authorizationParams: {
         redirect_uri: window.location.origin
       }
-    })
+    }), provideAnimationsAsync()
   ]
 };
