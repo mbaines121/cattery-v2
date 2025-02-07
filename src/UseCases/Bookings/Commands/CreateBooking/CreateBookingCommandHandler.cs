@@ -11,22 +11,14 @@ public class CreateBookingCommandHandler(IApplicationDbContext _context) : IComm
         _context.Bookings.Add(booking);
 
         // TODO: DELETE THIS!
-        booking.Customer = new BookedCustomer
-        {
-            Id = CustomerId.Of(Guid.NewGuid()),
-            Email = "someone@customer.com",
-            Name = "Name",
-            Telephone = "07854123654"
-        };
-
-        //
+        booking.BookedCustomer = BookedCustomer.Create(CustomerId.Of(Guid.NewGuid()), "Name");
 
         var results = await _context.SaveChangesAsync(cancellationToken);
 
         return new CreateBookingResult(booking.Id.Value);
     }
 
-    private Booking CreateNewBooking(BookingDto boookingDto)
+    private Booking CreateNewBooking(BookingDto bookingDto)
     {
         var booking = Booking.Create(BookingId.Of(Guid.NewGuid()));
 

@@ -29,7 +29,7 @@ export class DashboardComponent implements OnInit {
   isFetching = signal(false);
   error = signal('');
 
-  weatherforecasts = this.dashboardService.loadedWeatherforecasts;
+  dashboardItems = this.dashboardService.loadedDashboardItems;
 
   ngOnInit(): void {
     this.isFetching.set(true);

@@ -2,7 +2,7 @@ using AngularUI.Server;
 using AngularUI.Server.Auth;
 using Application;
 using Infrastructure;
-using Microsoft.AspNetCore.Authorization;
+using Infrastructure.Data.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,10 +22,14 @@ builder.Services
     .AddAuthentication(builder.Configuration)
     .AddAuthorisation();
 
+builder.Services.AddCarter();
+
 var app = builder.Build();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.MapCarter();
 
 app.UseDefaultFiles();
 app.MapStaticAssets();
@@ -38,43 +42,19 @@ if (app.Environment.IsDevelopment())
     using (var scope = app.Services.CreateScope())
     {
         var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-        context.Database.EnsureCreated();
+        //context.Database.EnsureCreated();
+
+        await context.Database.EnsureDeletedAsync();
     }
+
+    await app.InitialiseDatabaseAsync();
 }
 
 app.UseHttpsRedirection();
-
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-// TODO: Move with Carter
-app.MapGet("/api/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast")
-.RequireAuthorization();
-
-// This webhook is called by Auth0 after a new user has been registered.
-app.MapPost("/users", () => {
-    // Store the user Id and a new user record in the db. (not customer)
-});
 
 app.MapFallbackToFile("/index.html");
 
 app.Run();
 
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
+// set the default project to Infrastructure
+// add-migration UpdatedForeignKeys -OutputDir Data/Migrations -StartupProject AngularUI.Server

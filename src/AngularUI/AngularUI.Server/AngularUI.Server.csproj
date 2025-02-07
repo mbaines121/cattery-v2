@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Carter" Version="8.2.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.SpaProxy">
@@ -20,6 +21,7 @@
   <ItemGroup>
 	<PackageReference Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.0" />
 	<PackageReference Include="Auth0.AspNetCore.Authentication" Version="1.4.1" />
+	<PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.9.2" />
 	<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.0">
 	  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	  <PrivateAssets>all</PrivateAssets>

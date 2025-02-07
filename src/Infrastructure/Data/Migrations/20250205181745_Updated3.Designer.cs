@@ -13,15 +13,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250110160642_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250205181745_Updated3")]
+    partial class Updated3
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.0")
+                .HasAnnotation("ProductVersion", "9.0.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -31,7 +31,7 @@ namespace Infrastructure.Data.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("BookedPenId")
+                    b.Property<Guid>("BookedPenId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("CreatedAt")
@@ -69,7 +69,6 @@ namespace Infrastructure.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("LastModified")
@@ -83,7 +82,6 @@ namespace Infrastructure.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Telephone")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -96,7 +94,7 @@ namespace Infrastructure.Data.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("BookingId")
+                    b.Property<Guid>("BookingId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("CreatedAt")
@@ -133,14 +131,14 @@ namespace Infrastructure.Data.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("BookedCustomerId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("CustomerId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("datetime2");
@@ -150,7 +148,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomerId");
+                    b.HasIndex("BookedCustomerId");
 
                     b.ToTable("Bookings");
                 });
@@ -186,20 +184,16 @@ namespace Infrastructure.Data.Migrations
 
                             b1.Property<string>("AddressLine1")
                                 .IsRequired()
-                                .ValueGeneratedOnUpdateSometimes()
                                 .HasMaxLength(100)
                                 .HasColumnType("nvarchar(100)")
                                 .HasColumnName("AddressLine1");
 
                             b1.Property<string>("AddressLine2")
-                                .IsRequired()
-                                .ValueGeneratedOnUpdateSometimes()
                                 .HasMaxLength(100)
                                 .HasColumnType("nvarchar(100)")
-                                .HasColumnName("AddressLine1");
+                                .HasColumnName("AddressLine2");
 
                             b1.Property<string>("County")
-                                .IsRequired()
                                 .HasMaxLength(100)
                                 .HasColumnType("nvarchar(100)")
                                 .HasColumnName("County");
@@ -211,7 +205,6 @@ namespace Infrastructure.Data.Migrations
                                 .HasColumnName("Postcode");
 
                             b1.Property<string>("TownCity")
-                                .IsRequired()
                                 .HasMaxLength(100)
                                 .HasColumnType("nvarchar(100)")
                                 .HasColumnName("TownCity");
@@ -230,11 +223,10 @@ namespace Infrastructure.Data.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("Age")
+                    b.Property<int?>("Age")
                         .HasColumnType("int");
 
                     b.Property<string>("Breed")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("CreatedAt")
@@ -247,7 +239,6 @@ namespace Infrastructure.Data.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("DietaryRequirements")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("LastModified")
@@ -261,11 +252,9 @@ namespace Infrastructure.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Notes")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Species")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -281,7 +270,7 @@ namespace Infrastructure.Data.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("CostPerNight")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("money");
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -309,27 +298,33 @@ namespace Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Domain.Aggregates.BookingAggregate.Entities.BoardedAnimal", b =>
                 {
-                    b.HasOne("Domain.Aggregates.BookingAggregate.Entities.BookedPen", null)
+                    b.HasOne("Domain.Aggregates.BookingAggregate.Entities.BookedPen", "BookedPen")
                         .WithMany("BoardedAnimals")
-                        .HasForeignKey("BookedPenId");
+                        .HasForeignKey("BookedPenId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("BookedPen");
                 });
 
             modelBuilder.Entity("Domain.Aggregates.BookingAggregate.Entities.BookedPen", b =>
                 {
-                    b.HasOne("Domain.Aggregates.BookingAggregate.Entities.Booking", null)
-                        .WithMany("Pens")
-                        .HasForeignKey("BookingId");
+                    b.HasOne("Domain.Aggregates.BookingAggregate.Entities.Booking", "Booking")
+                        .WithMany("BookedPens")
+                        .HasForeignKey("BookingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Booking");
                 });
 
             modelBuilder.Entity("Domain.Aggregates.BookingAggregate.Entities.Booking", b =>
                 {
-                    b.HasOne("Domain.Aggregates.BookingAggregate.Entities.BookedCustomer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("Domain.Aggregates.BookingAggregate.Entities.BookedCustomer", "BookedCustomer")
+                        .WithMany("Bookings")
+                        .HasForeignKey("BookedCustomerId");
 
-                    b.Navigation("Customer");
+                    b.Navigation("BookedCustomer");
                 });
 
             modelBuilder.Entity("Domain.Aggregates.CustomerAggregate.Entities.OwnedAnimal", b =>
@@ -339,6 +334,11 @@ namespace Infrastructure.Data.Migrations
                         .HasForeignKey("CustomerId");
                 });
 
+            modelBuilder.Entity("Domain.Aggregates.BookingAggregate.Entities.BookedCustomer", b =>
+                {
+                    b.Navigation("Bookings");
+                });
+
             modelBuilder.Entity("Domain.Aggregates.BookingAggregate.Entities.BookedPen", b =>
                 {
                     b.Navigation("BoardedAnimals");
@@ -346,7 +346,7 @@ namespace Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Domain.Aggregates.BookingAggregate.Entities.Booking", b =>
                 {
-                    b.Navigation("Pens");
+                    b.Navigation("BookedPens");
                 });
 
             modelBuilder.Entity("Domain.Aggregates.CustomerAggregate.Entities.Customer", b =>

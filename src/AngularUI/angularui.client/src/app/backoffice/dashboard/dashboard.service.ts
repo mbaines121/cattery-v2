@@ -1,14 +1,12 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { inject, Injectable, signal } from "@angular/core";
 import { AuthService } from "@auth0/auth0-angular";
 import { Observable, throwError } from "rxjs";
-import { catchError, concatMap, flatMap, map, tap } from "rxjs/operators";
+import { catchError, concatMap, map, tap } from "rxjs/operators";
 
-export interface WeatherForecast {
-  date: string;
-  temperatureC: number;
-  temperatureF: number;
-  summary: string;
+export interface DashboardItem {
+  title: string;
+  value: number;
 }
 
 @Injectable({
@@ -19,27 +17,26 @@ export class DashboardService {
   private auth = inject(AuthService);
   metadata = {};
 
-  private weatherforecasts = signal<WeatherForecast[]>([]);
+  private dashboardItems = signal<DashboardItem[]>([]);
 
-  public loadedWeatherforecasts = this.weatherforecasts.asReadonly();
+  public loadedDashboardItems = this.dashboardItems.asReadonly();
 
-  getDashboardTiles(): Observable<WeatherForecast[]> {
+  getDashboardTiles(): Observable<{ dashboardItems: DashboardItem[] }> {
     return this.auth.user$
       .pipe(
         concatMap((user) =>
-          this.httpClient
-            .get<WeatherForecast[]>('/api/weatherforecast')
+          this.httpClient.get<{ dashboardItems: DashboardItem[] }>('/api/dashboard', {
+              params: new HttpParams().set('userId', user?.sub ?? '')
+            })
             .pipe(
               tap({
-                next: weatherforecasts => {
-                  this.weatherforecasts.set(weatherforecasts);
+                next: response => {
+                  this.dashboardItems.set(response.dashboardItems);
                 }
               }),
-              catchError(() => throwError(() => new Error('Unable to get dashboard tiles.')))
+              catchError(() => throwError(() => new Error('Unable to get dashboard items.')))
             )
-        ),
-        map((user: any) => user.user_metadata),
-        tap((meta) => (this.metadata = meta))
+        )
       );
   }
 }

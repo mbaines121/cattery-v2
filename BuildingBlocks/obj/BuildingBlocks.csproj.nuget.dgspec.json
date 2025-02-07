@@ -51,7 +51,7 @@
           "dependencies": {
             "FluentValidation": {
               "target": "Package",
-              "version": "[11.9.2, )"
+              "version": "[11.11.0, )"
             },
             "FluentValidation.AspNetCore": {
               "target": "Package",
@@ -59,7 +59,7 @@
             },
             "FluentValidation.DependencyInjectionExtensions": {
               "target": "Package",
-              "version": "[11.9.2, )"
+              "version": "[11.11.0, )"
             },
             "Mapster": {
               "target": "Package",
@@ -67,11 +67,11 @@
             },
             "MediatR": {
               "target": "Package",
-              "version": "[12.4.0, )"
+              "version": "[12.4.1, )"
             },
             "Microsoft.FeatureManagement.AspNetCore": {
               "target": "Package",
-              "version": "[3.5.0, )"
+              "version": "[4.0.0, )"
             }
           },
           "imports": [

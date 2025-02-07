@@ -3,4 +3,6 @@
 public class BoardedAnimal : Entity<AnimalId>
 {
     public string Name { get; set; } = default!;
+
+    public BookedPen BookedPen { get; set; }
 }

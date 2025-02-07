@@ -2,7 +2,20 @@
 
 public class BookedCustomer : Entity<CustomerId>
 {
-    public string Name { get; set; } = default!;
-    public string Telephone { get; set; } = default!;
-    public string Email { get; set; } = default!;
+    public required string Name { get; set; } = default!;
+    public string? Telephone { get; set; }
+    public string? Email { get; set; }
+
+    public ICollection<Booking> Bookings { get; set; } = new HashSet<Booking>();
+
+    private BookedCustomer() { }
+
+    public static BookedCustomer Create(CustomerId id, string name)
+    {
+        return new BookedCustomer
+        {
+            Id = id,
+            Name = name
+        };
+    }
 }

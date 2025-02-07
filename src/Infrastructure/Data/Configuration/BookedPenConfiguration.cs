@@ -7,5 +7,8 @@ public class BookedPenConfiguration : IEntityTypeConfiguration<BookedPen>
         builder.HasKey(m => m.Id);
         builder.Property(m => m.Id)
             .HasConversion(penId => penId.Value, dbId => PenId.Of(dbId));
+
+        builder.HasMany(m => m.BoardedAnimals)
+            .WithOne(m => m.BookedPen);
     }
 }

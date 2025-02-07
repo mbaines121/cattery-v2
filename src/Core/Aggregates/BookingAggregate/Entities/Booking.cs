@@ -2,8 +2,17 @@
 
 public class Booking : AggregateRoot<BookingId>
 {
-    public BookedCustomer Customer { get; set; }
-    public ICollection<BookedPen> Pens { get; set; } = new HashSet<BookedPen>();
+    public BookedCustomer? BookedCustomer { get; set; }
+    public ICollection<BookedPen> BookedPens { get; set; } = new HashSet<BookedPen>();
+
+    public BookedCustomer AddBookedCustomer(CustomerId customerId, string name)
+    {
+        var bookedCustomer = BookedCustomer.Create(customerId, name);
+
+        BookedCustomer = bookedCustomer;
+
+        return bookedCustomer;
+    }
 
     public static Booking Create(BookingId bookingId)
     {
@@ -15,6 +24,21 @@ public class Booking : AggregateRoot<BookingId>
         booking.AddDomainEvent(new BookingCreatedEvent(booking));
 
         return booking;
+    }
+
+    public BookedPen AddBookedPen(PenId penId, string name, DateTime fromDate, DateTime toDate)
+    {
+        var bookedPen = new BookedPen
+        {
+            Id = penId,
+            Name = name,
+            FromDate = fromDate,
+            ToDate = toDate
+        };
+
+        BookedPens.Add(bookedPen);
+
+        return bookedPen;
     }
 
 
