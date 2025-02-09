@@ -11,4 +11,14 @@ import { LoginButtonComponent } from "../../shared/login-button/login-button.com
 })
 export class LandingLayoutComponent {
 
+  showMobileNav = false;
+
+  toggleMobileNav() {
+    this.showMobileNav = !this.showMobileNav;
+  }
+
+  hideMobileNav() {
+    console.log('clicked');
+    this.showMobileNav = false;
+  }
 }
