@@ -1,1 +1,51 @@
-<p>booking works!</p>
+<mat-stepper orientation="vertical" [linear]="true" #stepper>
+  <mat-step [stepControl]="firstForm">
+    <div class="p-4">
+      <form [formGroup]="firstForm" (ngSubmit)="onSubmit()">
+
+        <div class="flex-col">
+          <mat-form-field>
+            <mat-label>Enter a date range</mat-label>
+            <mat-date-range-input [rangePicker]="picker">
+              <input matStartDate placeholder="Start date" formControlName="from">
+              <input matEndDate placeholder="End date" formControlName="to">
+            </mat-date-range-input>
+            <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+          </mat-form-field>
+
+          <div class="flex justify-between">
+            <button mat-button type="button" (click)="reset()">Reset</button>
+            <button mat-button matStepperNext type="submit">Next</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </mat-step>
+  <mat-step [stepControl]="secondForm">
+    <div class="p-4">
+      <form [formGroup]="secondForm">
+        <div class="flex-col">
+          ...
+        </div>
+        <div class="flex justify-between">
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </div>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <p>You are now done.</p>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-stepper>
+
+
+
+  

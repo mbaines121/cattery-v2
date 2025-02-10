@@ -3,16 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\User\\source\\repos\\cattery-v2\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{ADDD99F4-A8BE-4074-85A5-B710B398C4A4}|src\\AngularUI\\AngularUI.Server\\AngularUI.Server.csproj|c:\\users\\user\\source\\repos\\cattery-v2\\src\\angularui\\angularui.server\\endpoints\\dashboard\\dashboardendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ADDD99F4-A8BE-4074-85A5-B710B398C4A4}|src\\AngularUI\\AngularUI.Server\\AngularUI.Server.csproj|solutionrelative:src\\angularui\\angularui.server\\endpoints\\dashboard\\dashboardendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{82C3E114-2A33-409F-BD36-BA843FEC7E68}|src\\UseCases\\Application.csproj|c:\\users\\user\\source\\repos\\cattery-v2\\src\\usecases\\bookings\\commands\\createbooking\\createbookingcommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{82C3E114-2A33-409F-BD36-BA843FEC7E68}|src\\UseCases\\Application.csproj|solutionrelative:src\\usecases\\bookings\\commands\\createbooking\\createbookingcommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{ADDD99F4-A8BE-4074-85A5-B710B398C4A4}|src\\AngularUI\\AngularUI.Server\\AngularUI.Server.csproj|c:\\users\\user\\source\\repos\\cattery-v2\\src\\angularui\\angularui.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{ADDD99F4-A8BE-4074-85A5-B710B398C4A4}|src\\AngularUI\\AngularUI.Server\\AngularUI.Server.csproj|solutionrelative:src\\angularui\\angularui.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{82C3E114-2A33-409F-BD36-BA843FEC7E68}|src\\UseCases\\Application.csproj|c:\\users\\user\\source\\repos\\cattery-v2\\src\\usecases\\bookings\\commands\\createbooking\\createbookingcommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{82C3E114-2A33-409F-BD36-BA843FEC7E68}|src\\UseCases\\Application.csproj|solutionrelative:src\\usecases\\bookings\\commands\\createbooking\\createbookingcommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{75698B74-0706-4A72-B324-35DD34CB4D9B}|src\\Core\\Domain.csproj|c:\\users\\user\\source\\repos\\cattery-v2\\src\\core\\aggregates\\bookingaggregate\\entities\\booking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -59,19 +55,6 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "DashboardEndpoints.cs",
-              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\cattery-v2\\src\\AngularUI\\AngularUI.Server\\Endpoints\\Dashboard\\DashboardEndpoints.cs",
-              "RelativeDocumentMoniker": "src\\AngularUI\\AngularUI.Server\\Endpoints\\Dashboard\\DashboardEndpoints.cs",
-              "ToolTip": "C:\\Users\\User\\source\\repos\\cattery-v2\\src\\AngularUI\\AngularUI.Server\\Endpoints\\Dashboard\\DashboardEndpoints.cs",
-              "RelativeToolTip": "src\\AngularUI\\AngularUI.Server\\Endpoints\\Dashboard\\DashboardEndpoints.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-05T18:16:48.01Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
               "Title": "CreateBookingCommandHandler.cs",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\cattery-v2\\src\\UseCases\\Bookings\\Commands\\CreateBooking\\CreateBookingCommandHandler.cs",
               "RelativeDocumentMoniker": "src\\UseCases\\Bookings\\Commands\\CreateBooking\\CreateBookingCommandHandler.cs",
@@ -79,11 +62,12 @@
               "RelativeToolTip": "src\\UseCases\\Bookings\\Commands\\CreateBooking\\CreateBookingCommandHandler.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-05T11:21:19.553Z"
+              "WhenOpened": "2025-02-05T11:21:19.553Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "Booking.cs",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\cattery-v2\\src\\Core\\Aggregates\\BookingAggregate\\Entities\\Booking.cs",
               "RelativeDocumentMoniker": "src\\Core\\Aggregates\\BookingAggregate\\Entities\\Booking.cs",
@@ -95,7 +79,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 6,
               "Title": "OwnedAnimal.cs",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\cattery-v2\\src\\Core\\Aggregates\\CustomerAggregate\\Entities\\OwnedAnimal.cs",
               "RelativeDocumentMoniker": "src\\Core\\Aggregates\\CustomerAggregate\\Entities\\OwnedAnimal.cs",
@@ -107,7 +91,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 5,
               "Title": "DatabaseExtension.cs",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\cattery-v2\\src\\Infrastructure\\Data\\Extensions\\DatabaseExtension.cs",
               "RelativeDocumentMoniker": "src\\Infrastructure\\Data\\Extensions\\DatabaseExtension.cs",
@@ -131,7 +115,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 4,
               "Title": "Customer.cs",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\cattery-v2\\src\\Core\\Aggregates\\CustomerAggregate\\Entities\\Customer.cs",
               "RelativeDocumentMoniker": "src\\Core\\Aggregates\\CustomerAggregate\\Entities\\Customer.cs",
@@ -143,7 +127,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "InitialData.cs",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\cattery-v2\\src\\Infrastructure\\Data\\Extensions\\InitialData.cs",
               "RelativeDocumentMoniker": "src\\Infrastructure\\Data\\Extensions\\InitialData.cs",

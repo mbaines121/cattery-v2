@@ -1,5 +1,5 @@
 <span *ngIf="auth.user$ | async as user">
-    <h2>Good morning, {{ user.name }}</h2>
+    <h2 class="text-3xl p-4">Good morning, {{ user.name }}</h2>
 </span>
 
 @if (isFetching() && !error()) {
