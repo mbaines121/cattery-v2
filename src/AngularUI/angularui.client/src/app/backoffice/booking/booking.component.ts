@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -7,8 +7,10 @@ import { BookingModel } from './booking.model';
 import { MatButton } from '@angular/material/button';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { map, Observable, startWith } from 'rxjs';
+import { map, Observable, retry, startWith } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
+import { MatInputModule } from '@angular/material/input';
+import { BookingService } from './booking.service';
 
 let initialForm: BookingModel;
 const savedForm = window.localStorage.getItem('booking-model');
@@ -29,6 +31,7 @@ if (savedForm) {
     MatButton, 
     MatStepperModule,
     MatAutocompleteModule,
+    MatInputModule,
     AsyncPipe
   ],
   providers: [provideNativeDateAdapter()],
@@ -37,9 +40,11 @@ if (savedForm) {
 })
 export class BookingComponent implements OnInit {
 
-  // TODO: This needs refactoring into multiple components.
+  ////////////////////////////////////////////////////////////
+  // TODO: This needs refactoring into multiple components. //
+  ////////////////////////////////////////////////////////////
 
-  public firstForm = new FormGroup({
+  public dateForm = new FormGroup({
     from: new FormControl<Date | null>(initialForm?.from, {
       validators: [ Validators.required ]
     }),
@@ -48,27 +53,29 @@ export class BookingComponent implements OnInit {
     })
   });
 
-  public secondForm = new FormGroup({
+  public customersForm = new FormGroup({
     selectedCustomer: new FormControl('', {
       validators: [ Validators.required ]
     })
   });
 
-  options: string[] = ['One', 'Two', 'Three'];
-  filteredOptions!: Observable<string[]>;
+  public filteredOptions!: Observable<string[]>;
+
+  public isFetchingCustomers = signal(false);
+  private destroyRef = inject(DestroyRef);
+  private bookingService = inject(BookingService);
+  public error = signal('');
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 
-    return this.options.filter(option => option.toLowerCase().includes(filterValue));
-  }
-
-  constructor() {
-
+    return this.bookingService.loadedBookingCustomerItems()
+      .filter(customer => customer.name.toLowerCase().includes(filterValue))
+      .map(customer => customer.name);
   }
 
   ngOnInit(): void {
-    this.filteredOptions = this.secondForm.controls.selectedCustomer.valueChanges.pipe(
+    this.filteredOptions = this.customersForm.controls.selectedCustomer.valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value || '')),
     );
@@ -78,22 +85,40 @@ export class BookingComponent implements OnInit {
     if (savedForm) {
       const loadedForm: BookingModel = JSON.parse(savedForm);
       if (loadedForm) {
-        this.firstForm.patchValue({
+        this.dateForm.patchValue({
           from: loadedForm?.from,
           to: loadedForm?.to
         })
       }
     }
+
+    this.getCustomers();
+  }
+
+  getCustomers() {
+    this.isFetchingCustomers.set(true);
+    const subscription = this.bookingService.getCustomers()
+      .pipe(retry(3))
+      .subscribe({
+        error: error => {
+          this.error.set(error.message);
+        },
+        next: () => {
+          this.isFetchingCustomers.set(false);
+        }
+      });
+
+      this.destroyRef.onDestroy(() => { subscription.unsubscribe(); });
   }
 
   onSubmit() {
-    if (this.firstForm.invalid) {
+    if (this.dateForm.invalid) {
       console.log('INVALID FORM');
       return;
     }
 
-    const enteredFromDate = this.firstForm.value.from;
-    const enteredToDate = this.firstForm.value.to;
+    const enteredFromDate = this.dateForm.value.from;
+    const enteredToDate = this.dateForm.value.to;
 
     if (enteredFromDate && enteredToDate) {
       const bookingModel = new BookingModel(enteredFromDate, enteredToDate);
@@ -108,6 +133,6 @@ export class BookingComponent implements OnInit {
     const emptyModel = new BookingModel(null, null);
     window.localStorage.setItem('booking-model', JSON.stringify(null));
 
-    this.firstForm.reset();
+    this.dateForm.reset();
   }
 }

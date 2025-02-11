@@ -1,6 +1,4 @@
-﻿using Domain.Aggregates.ValueObjects;
-
-namespace Application.Bookings.Commands.CreateBooking;
+﻿namespace Application.Bookings.Commands.CreateBooking;
 
 public class CreateBookingCommandHandler(IApplicationDbContext _context) : ICommandHandler<CreateBookingCommand, CreateBookingResult>
 {
@@ -9,19 +7,17 @@ public class CreateBookingCommandHandler(IApplicationDbContext _context) : IComm
         var booking = Booking.Create(BookingId.Of(Guid.NewGuid()));
 
         var customer = await _context.Customers.FindAsync(command.BookingDto.CustomerId.Value, cancellationToken);
-        if (customer is not null)
+        if (customer is null)
         {
-            booking.AddBookedCustomer(command.BookingDto.CustomerId, customer.Name);
+            throw new CustomerNotFoundException(command.BookingDto.CustomerId);
         }
+
+        booking.AddBookedCustomer(command.BookingDto.CustomerId, customer.Name);
 
         await _context.Bookings.AddAsync(booking, cancellationToken);
 
         var results = await _context.SaveChangesAsync(cancellationToken);
 
-        return new CreateBookingResult
-        {
-            BookingId = booking.Id,
-            Success = results > 0
-        };
+        return new CreateBookingResult(booking.Id);
     }
 }

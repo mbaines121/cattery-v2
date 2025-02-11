@@ -1,9 +1,9 @@
 <mat-stepper orientation="vertical" [linear]="true" #stepper>
-  <mat-step [stepControl]="firstForm">
-    <div class="p-4">
-      <form [formGroup]="firstForm" (ngSubmit)="onSubmit()">
+  <mat-step [stepControl]="dateForm">
+    <div class="p-4 w-full lg:w-3/4 xl:w-1/2">
+      <form [formGroup]="dateForm" (ngSubmit)="onSubmit()">
         <div class="flex-col">
-          <mat-form-field>
+          <mat-form-field class="w-full">
             <mat-label>Enter a date range</mat-label>
             <mat-date-range-input [rangePicker]="picker">
               <input matStartDate placeholder="Start date" formControlName="from">
@@ -15,18 +15,17 @@
           </mat-form-field>
           <div class="flex justify-between">
             <button mat-button type="button" (click)="reset()">Reset</button>
-            <button mat-button matStepperNext type="submit">Next</button>
+            <button mat-flat-button matStepperNext type="submit">Next</button>
           </div>
         </div>
       </form>
     </div>
   </mat-step>
-  <mat-step [stepControl]="secondForm">
-    <div class="p-4">
-      <form [formGroup]="secondForm">
+  <mat-step [stepControl]="customersForm">
+    <div class="p-4 w-full lg:w-3/4 xl:w-1/2">
+      <form [formGroup]="customersForm">
         <div class="flex-col">
-          
-          <!--<mat-form-field>
+          <mat-form-field class="w-full">
             <mat-label>Customer</mat-label>
             <input type="text"
                    placeholder="Select customer"
@@ -35,16 +34,15 @@
                    formControlName="selectedCustomer"
                    [matAutocomplete]="auto">
             <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-              @for (option of filteredOptions | async; track option) {
-                <mat-option [value]="option">{{option}}</mat-option>
-              }
+            @for (customer of filteredOptions | async; track customer) {
+              <mat-option [value]="customer">{{customer}}</mat-option>
+            }
             </mat-autocomplete>
-          </mat-form-field>-->
-
+          </mat-form-field>
         </div>
         <div class="flex justify-between">
           <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
+          <button mat-flat-button matStepperNext>Next</button>
         </div>
       </form>
     </div>

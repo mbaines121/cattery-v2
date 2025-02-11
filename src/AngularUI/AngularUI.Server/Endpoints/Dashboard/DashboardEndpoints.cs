@@ -14,16 +14,9 @@ public class DashboardEndpoints : ICarterModule
         {
             var query = new GetDashboardQuery();
             var result = await sender.Send(query);
+            var response = result.Adapt<GetDashboardResponse>();
 
-            if (result.Success)
-            {
-                var response = result.Adapt<GetDashboardResponse>();
-                return Results.Ok(response);
-            }
-            else
-            {
-                return Results.BadRequest(result.Message);
-            }
+            return Results.Ok(response);
         })
         .WithName("GetDashboardItems")
         .WithSummary("Gets the dashboard items.")
