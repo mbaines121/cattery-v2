@@ -6,6 +6,9 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { BookingModel } from './booking.model';
 import { MatButton } from '@angular/material/button';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { map, Observable, startWith } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
 
 let initialForm: BookingModel;
 const savedForm = window.localStorage.getItem('booking-model');
@@ -24,13 +27,18 @@ if (savedForm) {
     MatFormFieldModule, 
     MatDatepickerModule, 
     MatButton, 
-    MatStepperModule
+    MatStepperModule,
+    MatAutocompleteModule,
+    AsyncPipe
   ],
   providers: [provideNativeDateAdapter()],
   templateUrl: './booking.component.html',
   styleUrl: './booking.component.css'
 })
 export class BookingComponent implements OnInit {
+
+  // TODO: This needs refactoring into multiple components.
+
   public firstForm = new FormGroup({
     from: new FormControl<Date | null>(initialForm?.from, {
       validators: [ Validators.required ]
@@ -41,12 +49,30 @@ export class BookingComponent implements OnInit {
   });
 
   public secondForm = new FormGroup({
-    secondCtrl: new FormControl('', {
+    selectedCustomer: new FormControl('', {
       validators: [ Validators.required ]
     })
   });
 
+  options: string[] = ['One', 'Two', 'Three'];
+  filteredOptions!: Observable<string[]>;
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.options.filter(option => option.toLowerCase().includes(filterValue));
+  }
+
+  constructor() {
+
+  }
+
   ngOnInit(): void {
+    this.filteredOptions = this.secondForm.controls.selectedCustomer.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value || '')),
+    );
+
     const savedForm = window.localStorage.getItem('booking-model');
 
     if (savedForm) {

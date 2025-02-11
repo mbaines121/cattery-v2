@@ -6,22 +6,22 @@ public class CreateBookingCommandHandler(IApplicationDbContext _context) : IComm
 {
     public async Task<CreateBookingResult> Handle(CreateBookingCommand command, CancellationToken cancellationToken)
     {
-        var booking = CreateNewBooking(command.Booking);
+        var booking = Booking.Create(BookingId.Of(Guid.NewGuid()));
 
-        _context.Bookings.Add(booking);
+        var customer = await _context.Customers.FindAsync(command.BookingDto.CustomerId.Value, cancellationToken);
+        if (customer is not null)
+        {
+            booking.AddBookedCustomer(command.BookingDto.CustomerId, customer.Name);
+        }
 
-        // TODO: DELETE THIS!
-        booking.BookedCustomer = BookedCustomer.Create(CustomerId.Of(Guid.NewGuid()), "Name");
+        await _context.Bookings.AddAsync(booking, cancellationToken);
 
         var results = await _context.SaveChangesAsync(cancellationToken);
 
-        return new CreateBookingResult(booking.Id.Value);
-    }
-
-    private Booking CreateNewBooking(BookingDto bookingDto)
-    {
-        var booking = Booking.Create(BookingId.Of(Guid.NewGuid()));
-
-        return booking;
+        return new CreateBookingResult
+        {
+            BookingId = booking.Id,
+            Success = results > 0
+        };
     }
 }

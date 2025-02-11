@@ -2,4 +2,7 @@
 
 public record GetDashboardQuery() : IQuery<GetDashboardResult>;
 
-public record GetDashboardResult(IEnumerable<DashboardItemDto> DashboardItems);
+public class GetDashboardResult() : ResultBase
+{
+    public IEnumerable<DashboardItemDto>? DashboardItems { get; set; }
+};

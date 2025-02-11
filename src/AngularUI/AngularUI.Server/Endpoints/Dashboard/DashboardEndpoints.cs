@@ -4,8 +4,6 @@ using Mapster;
 
 namespace AngularUI.Server.Endpoints.Dashboard;
 
-// Don't need a Request record here as we are not passing in any parameters yet.
-
 public record GetDashboardResponse(IEnumerable<DashboardItemDto> DashboardItems);
 
 public class DashboardEndpoints : ICarterModule
@@ -16,9 +14,16 @@ public class DashboardEndpoints : ICarterModule
         {
             var query = new GetDashboardQuery();
             var result = await sender.Send(query);
-            var response = result.Adapt<GetDashboardResponse>();
 
-            return Results.Ok(response);
+            if (result.Success)
+            {
+                var response = result.Adapt<GetDashboardResponse>();
+                return Results.Ok(response);
+            }
+            else
+            {
+                return Results.BadRequest(result.Message);
+            }
         })
         .WithName("GetDashboardItems")
         .WithSummary("Gets the dashboard items.")

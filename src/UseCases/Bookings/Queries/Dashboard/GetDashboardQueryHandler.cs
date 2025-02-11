@@ -14,18 +14,22 @@ internal class GetDashboardQueryHandler(IApplicationDbContext _context) : IQuery
             .Where(m => m.BookedPen.FromDate.Date == DateTime.UtcNow.Date)
             .ToListAsync();
 
-        return new GetDashboardResult(new List<DashboardItemDto>
+        return new GetDashboardResult
         {
-            new DashboardItemDto
+            DashboardItems = new List<DashboardItemDto>
             {
-                Title = "Currently boarded",
-                Value = currentlyBoardedAnimals.Count()
+                new DashboardItemDto
+                {
+                    Title = "Currently boarded",
+                    Value = currentlyBoardedAnimals.Count()
+                },
+                new DashboardItemDto
+                {
+                    Title = "Arriving today",
+                    Value = arrivingToday.Count()
+                }
             },
-            new DashboardItemDto
-            {
-                Title = "Arriving today",
-                Value = arrivingToday.Count()
-            }
-        });
+            Success = true
+        };
     }
 }

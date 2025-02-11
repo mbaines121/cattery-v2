@@ -2,7 +2,6 @@
   <mat-step [stepControl]="firstForm">
     <div class="p-4">
       <form [formGroup]="firstForm" (ngSubmit)="onSubmit()">
-
         <div class="flex-col">
           <mat-form-field>
             <mat-label>Enter a date range</mat-label>
@@ -14,7 +13,6 @@
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-date-range-picker #picker></mat-date-range-picker>
           </mat-form-field>
-
           <div class="flex justify-between">
             <button mat-button type="button" (click)="reset()">Reset</button>
             <button mat-button matStepperNext type="submit">Next</button>
@@ -27,7 +25,22 @@
     <div class="p-4">
       <form [formGroup]="secondForm">
         <div class="flex-col">
-          ...
+          
+          <!--<mat-form-field>
+            <mat-label>Customer</mat-label>
+            <input type="text"
+                   placeholder="Select customer"
+                   aria-label="Customer"
+                   matInput
+                   formControlName="selectedCustomer"
+                   [matAutocomplete]="auto">
+            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+              @for (option of filteredOptions | async; track option) {
+                <mat-option [value]="option">{{option}}</mat-option>
+              }
+            </mat-autocomplete>
+          </mat-form-field>-->
+
         </div>
         <div class="flex justify-between">
           <button mat-button matStepperPrevious>Back</button>

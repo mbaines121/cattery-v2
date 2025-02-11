@@ -1,5 +1,10 @@
-﻿namespace Application.Bookings.Commands.CreateBooking;
+﻿using Domain.Aggregates.ValueObjects;
 
-public record CreateBookingCommand(BookingDto Booking) : ICommand<CreateBookingResult>;
+namespace Application.Bookings.Commands.CreateBooking;
 
-public record CreateBookingResult(Guid Id);
+public record CreateBookingCommand(BookingDto BookingDto) : ICommand<CreateBookingResult>;
+
+public class CreateBookingResult() : ResultBase
+{
+    public BookingId? BookingId { get; set; }
+};
