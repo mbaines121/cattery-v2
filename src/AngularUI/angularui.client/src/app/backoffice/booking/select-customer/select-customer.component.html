@@ -1,1 +1,22 @@
-<p>select-customer works!</p>
+<form [formGroup]="customersForm">
+  <div class="flex-col">
+    <mat-form-field class="w-full">
+      <mat-label>Customer</mat-label>
+      <input type="text"
+             placeholder="Select customer"
+             aria-label="Customer"
+             matInput
+             formControlName="selectedCustomer"
+             [matAutocomplete]="auto">
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+      @for (customer of filteredOptions | async; track customer) {
+        <mat-option [value]="customer">{{customer}}</mat-option>
+      }
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+  <div class="flex justify-between">
+    <button mat-button matStepperPrevious>Back</button>
+    <button mat-flat-button matStepperNext>Next</button>
+  </div>
+</form>
