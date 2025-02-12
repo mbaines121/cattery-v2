@@ -26,6 +26,8 @@ builder.Services.AddCarter();
 
 var app = builder.Build();
 
+app.UseWebServices();
+
 app.UseAuthentication();
 app.UseAuthorization();
 

@@ -74,7 +74,7 @@ export class SelectDatesComponent implements OnInit {
 
   reset() {
     const emptyModel = new BookingModel(null, null);
-    window.localStorage.setItem('booking-model', JSON.stringify(null));
+    window.localStorage.setItem('booking-model', JSON.stringify(emptyModel));
 
     this.dateForm.reset();
   }
