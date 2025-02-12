@@ -1,6 +1,5 @@
 import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButton } from '@angular/material/button';
 import { MatStepperModule } from '@angular/material/stepper';
@@ -15,7 +14,6 @@ import { BookingService } from '../booking.service';
   imports: [
     ReactiveFormsModule,
       MatFormFieldModule,
-      MatDatepickerModule,
       MatButton,
       MatStepperModule,
       MatAutocompleteModule,

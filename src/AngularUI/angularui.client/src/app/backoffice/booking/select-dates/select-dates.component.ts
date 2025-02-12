@@ -6,6 +6,7 @@ import { MatButton } from '@angular/material/button';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { BookingModel } from '../booking.model';
+import { MatStepperModule } from '@angular/material/stepper';
 
 let initialForm: BookingModel;
 const savedForm = window.localStorage.getItem('booking-model');
@@ -25,7 +26,8 @@ if (savedForm) {
       MatDatepickerModule,
       MatButton,
       MatAutocompleteModule,
-      MatInputModule
+      MatInputModule,
+      MatStepperModule
   ],
   templateUrl: './select-dates.component.html',
   styleUrl: './select-dates.component.css'
@@ -64,16 +66,14 @@ export class SelectDatesComponent implements OnInit {
     const enteredToDate = this.dateForm.value.to;
 
     if (enteredFromDate && enteredToDate) {
-      const bookingModel = new BookingModel(enteredFromDate, enteredToDate);
+      const bookingModel = new BookingModel(enteredFromDate, enteredToDate, null);
 
       window.localStorage.setItem('booking-model', JSON.stringify(bookingModel));
-    } else {
-
     }
   }
 
   reset() {
-    const emptyModel = new BookingModel(null, null);
+    const emptyModel = new BookingModel(null, null, null);
     window.localStorage.setItem('booking-model', JSON.stringify(emptyModel));
 
     this.dateForm.reset();
