@@ -1,5 +1,7 @@
 <mat-stepper orientation="vertical" [linear]="true" #stepper>
+
   <mat-step [stepControl]="dateForm">
+    <ng-template matStepLabel>When are they staying</ng-template>
     <div class="p-4 w-full lg:w-3/4 xl:w-1/2">
       <form [formGroup]="dateForm" (ngSubmit)="onSubmit()">
         <div class="flex-col">
@@ -21,7 +23,9 @@
       </form>
     </div>
   </mat-step>
+
   <mat-step [stepControl]="customersForm">
+    <ng-template matStepLabel>New or existing customer</ng-template>
     <div class="p-4 w-full lg:w-3/4 xl:w-1/2">
       <form [formGroup]="customersForm">
         <div class="flex-col">
@@ -47,14 +51,16 @@
       </form>
     </div>
   </mat-step>
+
   <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
+    <ng-template matStepLabel>Animals</ng-template>
     <p>You are now done.</p>
     <div>
       <button mat-button matStepperPrevious>Back</button>
       <button mat-button (click)="stepper.reset()">Reset</button>
     </div>
   </mat-step>
+
 </mat-stepper>
 
 
