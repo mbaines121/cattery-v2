@@ -8,10 +8,10 @@
              matInput
              formControlName="selectedCustomer"
              [matAutocomplete]="auto">
-      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-      @for (customer of filteredOptions | async; track customer) {
-        <mat-option [value]="customer">{{customer}}</mat-option>
-      }
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="onSelected($event)">
+        @for (customer of filteredOptions | async; track customer) {
+          <mat-option [value]="customer">{{customer}}</mat-option>
+        }
       </mat-autocomplete>
     </mat-form-field>
   </div>

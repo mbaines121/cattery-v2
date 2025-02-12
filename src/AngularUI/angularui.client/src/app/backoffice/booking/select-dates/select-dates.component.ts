@@ -1,22 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButton } from '@angular/material/button';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
-import { BookingModel } from '../booking.model';
 import { MatStepperModule } from '@angular/material/stepper';
-
-let initialForm: BookingModel;
-const savedForm = window.localStorage.getItem('booking-model');
-
-if (savedForm) {
-  const loadedForm: BookingModel = JSON.parse(savedForm);
-  if (loadedForm) {
-    initialForm = loadedForm;
-  }
-}
+import { LocalStorageService } from '../localstorage.service';
 
 @Component({
   selector: 'app-select-dates',
@@ -33,26 +23,27 @@ if (savedForm) {
   styleUrl: './select-dates.component.css'
 })
 export class SelectDatesComponent implements OnInit {
+  private localStorageService = inject(LocalStorageService);
+
   public dateForm = new FormGroup({
-    from: new FormControl<Date | null>(initialForm?.from, {
+    from: new FormControl<Date | null>(this.localStorageService.loadedBookingData()?.from, {
       validators: [ Validators.required ]
     }),
-    to: new FormControl<Date | null>(initialForm?.to, {
+    to: new FormControl<Date | null>(this.localStorageService.loadedBookingData()?.to, {
       validators: [ Validators.required ]
     })
   });
 
   ngOnInit(): void {
-    const bookingModelJson = window.localStorage.getItem('booking-model');
+    this.localStorageService.Load();
 
-    if (bookingModelJson) {
-      const loadedForm: BookingModel = JSON.parse(bookingModelJson);
-      if (loadedForm) {
-        this.dateForm.patchValue({
-          from: loadedForm?.from,
-          to: loadedForm?.to
-        })
-      }
+    const loadedData = this.localStorageService.loadedBookingData();
+
+    if (loadedData) {
+      this.dateForm.patchValue({
+        from: loadedData?.from,
+        to: loadedData?.to
+      })
     }
   }
 
@@ -66,16 +57,12 @@ export class SelectDatesComponent implements OnInit {
     const enteredToDate = this.dateForm.value.to;
 
     if (enteredFromDate && enteredToDate) {
-      const bookingModel = new BookingModel(enteredFromDate, enteredToDate, null);
-
-      window.localStorage.setItem('booking-model', JSON.stringify(bookingModel));
+      this.localStorageService.SaveDatesData(enteredFromDate, enteredToDate);
     }
   }
 
   reset() {
-    const emptyModel = new BookingModel(null, null, null);
-    window.localStorage.setItem('booking-model', JSON.stringify(emptyModel));
-
+    this.localStorageService.Reset();
     this.dateForm.reset();
   }
 }
