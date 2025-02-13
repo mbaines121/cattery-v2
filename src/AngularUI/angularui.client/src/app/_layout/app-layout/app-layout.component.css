@@ -1,3 +1,7 @@
 .spacer {
   flex: 1 1 auto;
 }
+
+.mat-nav-list a.mdc-list-item--activated {
+  background: blue;
+}

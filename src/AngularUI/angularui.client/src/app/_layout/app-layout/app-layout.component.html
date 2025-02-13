@@ -5,12 +5,12 @@
         [opened]="(isHandset$ | async) === false">
       <mat-toolbar>Cattery App</mat-toolbar>
       <mat-nav-list>
-        <a mat-list-item routerLink="/app/dashboard">Dashboard</a>
-        <a mat-list-item routerLink="/app/booking">Bookings</a>
-        <a mat-list-item routerLink="/app/booking">Customers</a>
-        <a mat-list-item routerLink="/app/booking">Pens</a>
-        <a mat-list-item routerLink="/app/booking">Reports</a>
-        <a mat-list-item routerLink="/app/booking">Help</a>
+        <a mat-list-item routerLinkActive="mdc-list-item--activated" routerLink="/app/dashboard">Dashboard</a>
+        <a mat-list-item routerLinkActive="mdc-list-item--activated" routerLink="/app/booking">Bookings</a>
+        <a mat-list-item routerLinkActive="mdc-list-item--activated" routerLink="/app/customers">Customers</a>
+        <a mat-list-item routerLinkActive="mdc-list-item--activated" routerLink="/app/pens">Pens</a>
+        <a mat-list-item routerLinkActive="mdc-list-item--activated" routerLink="/app/reports">Reports</a>
+        <a mat-list-item routerLinkActive="mdc-list-item--activated" routerLink="/app/help">Help</a>
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
