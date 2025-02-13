@@ -14,13 +14,14 @@
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
-      <mat-toolbar>
+      <mat-toolbar class="flex justify-between">
         <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="drawer.toggle()">
           <mat-icon>menu</mat-icon>
         </button>
-        <span class="spacer"></span>
-        <app-logout-button />
-        <app-account-button />
+        <div>
+          <app-logout-button />
+          <app-account-button />
+        </div>
       </mat-toolbar>
       <router-outlet />
     </mat-sidenav-content>
