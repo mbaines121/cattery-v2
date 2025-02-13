@@ -4,6 +4,7 @@ public class Booking : AggregateRoot<BookingId>
 {
     public BookedCustomer? BookedCustomer { get; set; }
     public ICollection<BookedPen> BookedPens { get; set; } = new HashSet<BookedPen>();
+    public required string Sub { get; set; }
 
     public BookedCustomer AddBookedCustomer(CustomerId customerId, string name)
     {
@@ -14,11 +15,12 @@ public class Booking : AggregateRoot<BookingId>
         return bookedCustomer;
     }
 
-    public static Booking Create(BookingId bookingId)
+    public static Booking Create(BookingId bookingId, string sub)
     {
         var booking = new Booking
         {
-            Id = bookingId
+            Id = bookingId,
+            Sub = sub
         };
 
         booking.AddDomainEvent(new BookingCreatedEvent(booking));

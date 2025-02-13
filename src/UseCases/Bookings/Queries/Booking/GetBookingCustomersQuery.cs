@@ -1,5 +1,5 @@
 ﻿namespace Application.Bookings.Queries.Booking;
 
-public record GetBookingCustomersQuery() : IQuery<GetBookingCustomersResult>;
+public record GetBookingCustomersQuery(string Sub) : IQuery<GetBookingCustomersResult>;
 
 public record GetBookingCustomersResult(IEnumerable<BookingCustomerItemDto> BookingCustomerItems);

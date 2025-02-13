@@ -1,5 +1,3 @@
-﻿using Domain.Aggregates.ValueObjects;
+﻿namespace Application.Dtos;
 
-namespace Application.Dtos;
-
-public record BookingDto(BookingId BookingId, CustomerId CustomerId);
+public record BookingDto(BookingId BookingId, CustomerId CustomerId, string Sub);

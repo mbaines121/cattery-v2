@@ -4,7 +4,7 @@ public class CreateBookingCommandHandler(IApplicationDbContext _context) : IComm
 {
     public async Task<CreateBookingResult> Handle(CreateBookingCommand command, CancellationToken cancellationToken)
     {
-        var booking = Booking.Create(BookingId.Of(Guid.NewGuid()));
+        var booking = Booking.Create(BookingId.Of(Guid.NewGuid()), command.BookingDto.Sub);
 
         var customer = await _context.Customers.FindAsync(command.BookingDto.CustomerId.Value, cancellationToken);
         if (customer is null)

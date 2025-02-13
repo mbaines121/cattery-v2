@@ -6,7 +6,7 @@ internal class InitialData
     {
         get
         {
-            var pen = Pen.Create(PenId.Of(Guid.Parse("06a725ab-be4d-494b-95e4-7fc4af1e8e0c")), "Pen 1");
+            var pen = Pen.Create(PenId.Of(Guid.Parse("06a725ab-be4d-494b-95e4-7fc4af1e8e0c")), "Pen 1", "auth0|677bab54e25c4277b572d5df");
 
             return new List<Pen> { pen };
         }
@@ -16,7 +16,7 @@ internal class InitialData
     {
         get
         {
-            var customer = Customer.Create(CustomerId.Of(Guid.Parse("d9296bc7-73f8-4cc6-93b9-6c4ea1bc5dd9")), "John Smith", "john.smith@test.com");
+            var customer = Customer.Create(CustomerId.Of(Guid.Parse("d9296bc7-73f8-4cc6-93b9-6c4ea1bc5dd9")), "John Smith", "john.smith@test.com", "auth0|677bab54e25c4277b572d5df");
 
             var address = Address.Of("1 Some Street", "Some area", "Some town", "North Yorkshire", "DL1 1AB");
             customer.SetAddress(address);
@@ -38,7 +38,7 @@ internal class InitialData
 
             // customer
             var customer = Customers.First();
-            var booking = Booking.Create(BookingId.Of(Guid.Parse("fe3568a2-da63-4aa8-b308-62517d846476")));
+            var booking = Booking.Create(BookingId.Of(Guid.Parse("fe3568a2-da63-4aa8-b308-62517d846476")), "auth0|677bab54e25c4277b572d5df");
             booking.AddBookedCustomer(customer.Id, customer.Name);
 
             // pen

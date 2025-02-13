@@ -7,6 +7,7 @@ internal class GetBookingCustomersQueryHandler(IApplicationDbContext _context) :
         var customers = await _context.Customers.ToListAsync(cancellationToken);
 
         var customerItems = customers
+            .Where(customer => customer.Sub == request.Sub)
             .Select(customer => new BookingCustomerItemDto
             {
                 CustomerId = customer.Id.Value.ToString(),

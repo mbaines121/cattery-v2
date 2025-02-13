@@ -1,6 +1,7 @@
 ﻿using Application.Bookings.Queries.Booking;
 using Application.Dtos;
 using Mapster;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AngularUI.Server.Endpoints.Dashboard;
 
@@ -10,9 +11,9 @@ public class CustomerEndpoints : ICarterModule
 {
     public void AddRoutes(IEndpointRouteBuilder app)
     {
-        app.MapGet("/api/booking/customers", async (ISender sender) =>
+        app.MapGet("/api/booking/customers", async (string sub, ISender sender) =>
         {
-            var query = new GetBookingCustomersQuery();
+            var query = new GetBookingCustomersQuery(sub);
             var result = await sender.Send(query);
             var response = result.Adapt<GetBookingCustomersResponse>();
 

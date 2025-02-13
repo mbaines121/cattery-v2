@@ -7,16 +7,18 @@ public class Customer : AggregateRoot<CustomerId>
     public required string Name { get; set; }
     public required string EmailAddress { get; set; }
     public Address Address { get; set; } = default!;
+    public required string Sub { get; set; }
 
     public ICollection<OwnedAnimal> OwnedAnimals { get; set; } = new HashSet<OwnedAnimal>();
 
-    public static Customer Create(CustomerId customerId, string name, string emailAddress)
+    public static Customer Create(CustomerId customerId, string name, string emailAddress, string sub)
     {
         var customer = new Customer
         {
             Id = customerId,
             Name = name,
-            EmailAddress = emailAddress
+            EmailAddress = emailAddress,
+            Sub = sub
         };
 
         customer.AddDomainEvent(new CustomerCreatedEvent(customer));

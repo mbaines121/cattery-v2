@@ -10,9 +10,9 @@ public class DashboardEndpoints : ICarterModule
 {
     public void AddRoutes(IEndpointRouteBuilder app)
     {
-        app.MapGet("/api/dashboard", async (ISender sender) =>
+        app.MapGet("/api/dashboard", async (string sub, ISender sender) =>
         {
-            var query = new GetDashboardQuery();
+            var query = new GetDashboardQuery(sub);
             var result = await sender.Send(query);
             var response = result.Adapt<GetDashboardResponse>();
 
