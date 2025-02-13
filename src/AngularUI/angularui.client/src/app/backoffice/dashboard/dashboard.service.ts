@@ -1,13 +1,9 @@
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { inject, Injectable, signal } from "@angular/core";
-import { AuthService, User } from "@auth0/auth0-angular";
+import { AuthService } from "@auth0/auth0-angular";
 import { throwError } from "rxjs";
 import { catchError, switchMap, tap } from "rxjs/operators";
-
-export interface DashboardItem {
-  title: string;
-  value: number;
-}
+import { DashboardItem } from "./dashboard.interface";
 
 @Injectable({
   providedIn: 'root',
@@ -24,13 +20,13 @@ export class DashboardService {
   getDashboardTiles() {
     return this.auth.user$
       .pipe(
-        switchMap((user: User | null | undefined) => this.getDashboardTilesHelper(user))
+        switchMap(user => this.getDashboardTilesHelper(user?.sub ?? ''))
       );
   }
 
-  getDashboardTilesHelper(user: User | null | undefined) {
+  getDashboardTilesHelper(sub: string) {
     return this.httpClient.get<{ dashboardItems: DashboardItem[] }>('/api/dashboard', { 
-      params: new HttpParams().set('sub', user?.sub ?? '')
+      params: new HttpParams().set('sub', sub)
     })
       .pipe(
         tap({
