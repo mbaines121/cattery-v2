@@ -24,7 +24,6 @@ export class LandingLayoutComponent {
   }
 
   hideMobileNav() {
-    console.log('clicked');
     this.showMobileNav = false;
   }
 }
