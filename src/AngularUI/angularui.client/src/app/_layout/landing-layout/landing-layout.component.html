@@ -12,7 +12,7 @@
         <div class="pr-4">
           <app-login-button />
         </div>
-				<a href="/account/signup" class="self-center px-8 py-3 font-semibold rounded bg-teal-600 text-gray-50 shadow-lg hover:shadow-none">Get started for free</a>
+				<app-register-button text="Get started for free" classes="self-center px-8 py-3 font-semibold rounded bg-teal-600 text-gray-50 shadow-lg hover:shadow-none cursor-pointer" />
 			</div>
 			<button class="lg:hidden" (click)="toggleMobileNav()">
 				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6 text-gray-800">
@@ -30,7 +30,7 @@
           <app-login-button />
         </div>
         <div class="mt-4">
-          <a>Try for free</a>
+          <app-register-button text="Try for free" classes="" />
         </div>
         <div class="mt-4">
           <a>About</a>
