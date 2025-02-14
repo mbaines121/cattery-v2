@@ -3,13 +3,15 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatStepperModule } from '@angular/material/stepper';
 import { SelectDatesComponent } from "./select-dates/select-dates.component";
 import { SelectCustomerComponent } from "./select-customer/select-customer.component";
+import { SelectAnimalsComponent } from "./select-animals/select-animals.component";
 
 @Component({
   selector: 'app-booking',
   imports: [
     MatStepperModule,
     SelectDatesComponent,
-    SelectCustomerComponent
+    SelectCustomerComponent,
+    SelectAnimalsComponent
 ],
   providers: [provideNativeDateAdapter()],
   templateUrl: './booking.component.html',

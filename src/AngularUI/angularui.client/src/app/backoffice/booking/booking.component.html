@@ -16,10 +16,8 @@
 
   <mat-step>
     <ng-template matStepLabel>Which animals are staying</ng-template>
-    <p>You are now done.</p>
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
+    <div class="p-4 w-full lg:w-3/4 xl:w-1/2">
+      <app-select-animals />
     </div>
   </mat-step>
 
