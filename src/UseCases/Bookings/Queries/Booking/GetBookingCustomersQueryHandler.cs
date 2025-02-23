@@ -4,15 +4,15 @@ internal class GetBookingCustomersQueryHandler(IApplicationDbContext _context) :
 {
     public async Task<GetBookingCustomersResult> Handle(GetBookingCustomersQuery request, CancellationToken cancellationToken)
     {
-        var customers = await _context.Customers.ToListAsync(cancellationToken);
-
-        var customerItems = customers
+        var customerItems = await _context.Customers
             .Where(customer => customer.Sub == request.Sub)
             .Select(customer => new BookingCustomerItemDto
             {
                 CustomerId = customer.Id.Value.ToString(),
                 Name = customer.Name
-            });
+            })
+            .AsNoTracking()
+            .ToListAsync(cancellationToken);
 
         return new GetBookingCustomersResult(customerItems);
     }

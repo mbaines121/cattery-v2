@@ -11,15 +11,13 @@ import { BookingCustomerItem } from "./booking.interface";
 export class BookingService {
   private httpClient = inject(HttpClient);
   private auth = inject(AuthService);
-  metadata = {};
 
   private bookingCustomerItem = signal<BookingCustomerItem[]>([]);
 
   public loadedBookingCustomerItems = this.bookingCustomerItem.asReadonly();
 
   getCustomers() {
-    return this.auth.user$
-      .pipe(
+    return this.auth.user$.pipe(
         concatMap(user => this.getCustomersHelper(user?.sub ?? ''))
       );
   }
@@ -27,8 +25,7 @@ export class BookingService {
   getCustomersHelper(sub: string) {
     return this.httpClient.get<{ bookingCustomerItems: BookingCustomerItem[] }>('/api/booking/customers', {
       params: new HttpParams().set('userId', sub)
-    })
-      .pipe(
+    }).pipe(
         tap({
           next: response => { this.bookingCustomerItem.set(response.bookingCustomerItems); }
         }),

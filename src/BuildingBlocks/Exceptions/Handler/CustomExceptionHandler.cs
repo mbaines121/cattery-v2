@@ -6,6 +6,9 @@ using Microsoft.Extensions.Logging;
 
 namespace BuildingBlocks.Exceptions.Handler;
 
+/// <summary>
+/// This middleware captures exceptions and converts the exception details to problem details.
+/// </summary>
 public class CustomExceptionHandler(ILogger<CustomExceptionHandler> logger) : IExceptionHandler
 {
     public async ValueTask<bool> TryHandleAsync(HttpContext httpContext, Exception exception, CancellationToken cancellationToken)
@@ -48,6 +51,7 @@ public class CustomExceptionHandler(ILogger<CustomExceptionHandler> logger) : IE
 
         var problemDetails = new ProblemDetails
         {
+            Type = "Exception thrown.",
             Title = details.Title,
             Detail = details.Detail,
             Status = details.StatusCode,

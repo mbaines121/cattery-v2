@@ -7,24 +7,26 @@ internal class GetDashboardQueryHandler(IApplicationDbContext _context) : IQuery
         var currentlyBoardedAnimals = await _context.BoardedAnimals
             .Where(m => m.BookedPen.Booking.Sub == request.Sub)
             .Where(m => m.BookedPen.FromDate.Date < DateTime.UtcNow.Date && m.BookedPen.ToDate.Date > DateTime.UtcNow.Date)
-            .ToListAsync();
+            .AsNoTracking()
+            .CountAsync();
 
         var arrivingToday = await _context.BoardedAnimals
             .Where(m => m.BookedPen.Booking.Sub == request.Sub)
             .Where(m => m.BookedPen.FromDate.Date == DateTime.UtcNow.Date)
-            .ToListAsync();
+            .AsNoTracking()
+            .CountAsync();
 
         return new GetDashboardResult(new List<DashboardItemDto>
         {
             new DashboardItemDto
             {
                 Title = "Currently boarded",
-                Value = currentlyBoardedAnimals.Count()
+                Value = currentlyBoardedAnimals
             },
             new DashboardItemDto
             {
                 Title = "Arriving today",
-                Value = arrivingToday.Count()
+                Value = arrivingToday
             }
         });
     }
